@@ -6,6 +6,98 @@
   <title>Anthony Tran — IT Systems &amp; Cloud Administrator</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
+  <!-- Azure Application Insights Tracking -->
+<script type="text/javascript">
+  !(function (cfg) {
+    function e() {
+      cfg.onInit && cfg.onInit(n);
+    }
+    var S, t, n, r, i, s, o, a, c, u, l, p, f, d, h, g, m, v, y, w, I, b;
+    (t = document),
+      (n = window),
+      (r = "script"),
+      (i = "connectionString"),
+      (s = "ingestionendpoint"),
+      (o = "disableExceptionTracking"),
+      (a = "ai.device."),
+      (c = "toLowerCase"),
+      (u = "crossOrigin"),
+      (l = "POST"),
+      (p = "appInsightsSDK"),
+      (f = cfg.name || "appInsights"),
+      (cfg.name || n[p]) && (n[p] = f),
+      (d =
+        n[f] ||
+        (function (g) {
+          var m = false,
+            v = false,
+            y = {
+              initialize: true,
+              queue: [],
+              sv: "8",
+              version: 2,
+              config: g,
+            };
+          function w(e, t) {
+            var n = {},
+              r = "Browser";
+            return (
+              (n[a + "id"] = r[c]()),
+              (n[a + "type"] = r),
+              (n["ai.operation.name"] =
+                window.location && window.location.pathname
+                  ? window.location.pathname
+                  : "_unknown_"),
+              (n["ai.internal.sdkVersion"] =
+                "javascript:snippet_" + (y.sv || y.version)),
+              {
+                time: new Date().toISOString(),
+                iKey: "",
+                name:
+                  "Microsoft.ApplicationInsights." +
+                  e.replace(/-/g, "") +
+                  "." +
+                  t,
+                sampleRate: 100,
+                tags: n,
+                data: {
+                  baseData: {
+                    ver: 2,
+                  },
+                },
+              }
+            );
+          }
+          y.trackPageView = function (e) {
+            y.queue.push(["trackPageView", [e]]);
+          };
+          y.trackEvent = function (e, t) {
+            y.queue.push(["trackEvent", [e, t]]);
+          };
+          y.trackException = function (e) {
+            y.queue.push(["trackException", [e]]);
+          };
+          var I = g.url || cfg.src;
+          if (I) {
+            var b = t.createElement(r);
+            b.src = I;
+            b[u] = "anonymous";
+            b.onload = e;
+            t.getElementsByTagName(r)[0].parentNode.appendChild(b);
+          }
+          return y;
+        })({
+          connectionString: "InstrumentationKey=6d2df268-07b8-4d31-ba49-0a76ff15b79e;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/;ApplicationId=3005516e-831d-431b-ae2d-cb1c41cd2a42",
+          src: "https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js",
+        }));
+    n[f] = d;
+    d.trackPageView({
+      name: document.title,
+    });
+  })({
+    src: "https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js",
+  });
+</script>
 </head>
 <body>
 <div class="page">
@@ -46,7 +138,7 @@
           </div>
           <div class="entry-org">Built and deployed a personal web resume on Azure Static Web Apps using GitHub Actions CI/CD, custom DNS, and HTTPS. Configured automated deployments from GitHub and connected a custom domain to create a production-style cloud hosting workflow.</div>
           <ul class="entry-bullets">
-            <li>Built and deployed a production-style static resume website using Azure Static Web Apps, GitHub Actions, and custom DNS.</li>
+            <li>Built and deployed a production-style static resume website using Azure Static Web Apps, GitHub Actions CI/CD, and a custom Porkbun-managed domain with HTTPS.</li>
             <li>Implemented a CI/CD pipeline through GitHub Actions to automate deployments after code commits to the main branch.</li>
             <li>Configured custom domain mapping with HTTPS and validated DNS ownership through Azure Static Web Apps.</li>
             <li>Resolved deployment pipeline errors by modifying Static Web Apps workflow settings, including static file deployment and build configuration.</li>
