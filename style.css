@@ -422,7 +422,17 @@ body::before {
 }
 
 /* ── SKILLS ── */
-.skills-table { display: flex; flex-direction: column; gap: 1.2rem; }
+.skills-table {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 100%;
+  margin: 0;
+}
+
+.skill-row {
+  text-align: left;
+}
 
 .skill-category {
   font-size: 0.65rem;
@@ -436,6 +446,7 @@ body::before {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  justify-content: flex-start;
 }
 
 .tag {
@@ -453,6 +464,18 @@ body::before {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-1px);
+}
+
+/* ── DEGREE LINK ── */
+a.degree-link {
+  text-decoration: none;
+  margin-left: 0.3rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+a.degree-link:hover {
+  background: rgba(59,130,246,0.22);
+  border-color: var(--accent);
 }
 
 /* ── PRINT ── */
