@@ -42,7 +42,7 @@ body::before {
 .hero {
   padding: 5rem 0 3.5rem;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 4rem;
+  margin-bottom: 0;
   position: relative;
   animation: fadeDown 0.7s ease both;
 }
@@ -106,6 +106,7 @@ body::before {
   gap: 1.2rem;
   font-size: 0.8rem;
   color: var(--muted);
+  margin-bottom: 0;
 }
 
 .hero-contact a {
@@ -118,7 +119,6 @@ body::before {
 }
 
 .hero-contact a:hover { color: var(--accent); }
-
 .hero-contact .dot { color: var(--border); }
 
 .hero-summary {
@@ -131,29 +131,72 @@ body::before {
   max-width: 640px;
 }
 
-/* ── LAYOUT ── */
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 0 4rem;
-  align-items: start;
+/* ── STICKY NAV ── */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 14, 20, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  margin: 0 -2rem;
+  padding: 0 2rem;
 }
 
-/* ── SECTION ── */
-.section {
-  margin-bottom: 3.5rem;
-  animation: fadeUp 0.6s ease both;
+.nav {
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.section:nth-child(1) { animation-delay: 0.1s; }
-.section:nth-child(2) { animation-delay: 0.2s; }
-.section:nth-child(3) { animation-delay: 0.3s; }
+.nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 1rem 1.4rem;
+  position: relative;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
+.nav-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.nav-btn:hover { color: var(--text); }
+.nav-btn.active { color: var(--accent); }
+.nav-btn.active::after { transform: scaleX(1); }
+
+/* ── TAB PANELS ── */
+.tabs { margin-top: 3rem; }
+
+.tab-panel {
+  display: none;
+  animation: tabIn 0.35s ease both;
+}
+
+.tab-panel.active { display: block; }
+
+@keyframes tabIn {
+  from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── SECTION HEAD ── */
 .section-head {
   display: flex;
   align-items: center;
@@ -174,15 +217,6 @@ body::before {
   flex: 1;
   height: 1px;
   background: var(--border);
-}
-
-/* ── SUMMARY ── */
-.summary {
-  font-size: 0.88rem;
-  color: #8fa3c8;
-  line-height: 1.8;
-  border-left: 2px solid var(--accent);
-  padding-left: 1.2rem;
 }
 
 /* ── ENTRY ── */
@@ -236,6 +270,7 @@ body::before {
   color: var(--muted);
   margin-bottom: 0.9rem;
   letter-spacing: 0.04em;
+  line-height: 1.6;
 }
 
 .entry-bullets {
@@ -300,51 +335,64 @@ body::before {
   border-color: var(--accent);
 }
 
-/* ── SIDEBAR ── */
-.sidebar .section { margin-bottom: 2.8rem; animation-delay: 0.25s; }
-
-/* Skills table */
-.skills-table { display: flex; flex-direction: column; gap: 0.8rem; }
-
-.skill-row {}
-
-.skill-category {
-  font-size: 0.65rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.4rem;
+/* ── EDUCATION GRID ── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
-.skill-tags {
+/* ── CERT LIST ── */
+.cert-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
-.tag {
-  font-size: 0.7rem;
-  padding: 0.2rem 0.55rem;
-  border: 1px solid var(--tag-border);
-  border-radius: 3px;
-  color: #8fa3c8;
-  background: var(--tag-bg);
-  transition: border-color 0.2s, color 0.2s;
+.cert-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  padding: 1rem 1.2rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
 }
 
-.tag:hover { border-color: var(--accent); color: var(--accent); }
+.cert-row:hover {
+  border-color: rgba(59,130,246,0.4);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
 
-/* Edu & Certs */
+.cert-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(59,130,246,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+/* ── SIDEBAR CARDS (reused in edu tab) ── */
 .sidebar-card {
   border: 1px solid var(--border);
   border-radius: 6px;
   background: var(--surface);
   padding: 1rem 1.1rem;
   margin-bottom: 0.8rem;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, box-shadow 0.25s;
 }
 
-.sidebar-card:hover { border-color: rgba(59,130,246,0.35); }
+.sidebar-card:hover {
+  border-color: rgba(59,130,246,0.4);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
 .sidebar-card:last-child { margin-bottom: 0; }
 
 .sidebar-card-title {
@@ -373,15 +421,52 @@ body::before {
   letter-spacing: 0.05em;
 }
 
+/* ── SKILLS ── */
+.skills-table { display: flex; flex-direction: column; gap: 1.2rem; }
+
+.skill-category {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-size: 0.72rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--tag-border);
+  border-radius: 3px;
+  color: #8fa3c8;
+  background: var(--tag-bg);
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  cursor: default;
+}
+
+.tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
 /* ── PRINT ── */
 @media print {
+  .nav-wrap { display: none; }
+  .tab-panel { display: block !important; margin-bottom: 2rem; }
   body { background: white; color: black; }
   body::before { display: none; }
-  .entry, .sidebar-card { box-shadow: none; border-color: #ddd; background: white; }
+  .entry, .sidebar-card, .cert-row { box-shadow: none; border-color: #ddd; background: white; }
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 700px) {
-  .layout { grid-template-columns: 1fr; }
+  .edu-grid { grid-template-columns: 1fr; }
   .hero-name { font-size: 2.2rem; }
+  .nav-btn { padding: 0.85rem 0.9rem; font-size: 0.6rem; }
 }
