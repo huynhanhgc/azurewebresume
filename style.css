@@ -173,13 +173,13 @@ body::before {
   right: 0;
   height: 2px;
   background: var(--accent);
-  transform: scaleX(0);
-  transition: transform 0.25s ease;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .nav-btn:hover { color: var(--text); }
 .nav-btn.active { color: var(--accent); }
-.nav-btn.active::after { transform: scaleX(1); }
+.nav-btn.active::after { opacity: 1; }
 
 /* ── TAB PANELS ── */
 .tabs { margin-top: 3rem; }
@@ -465,6 +465,30 @@ body::before {
   color: var(--accent);
   transform: translateY(-1px);
 }
+
+/* ── CLIENT CARDS ── */
+a.client-card {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.client-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.client-date {
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 6rem;
+}
+
+a.client-card .sidebar-card-title { transition: color 0.2s; }
+a.client-card:hover .sidebar-card-title { color: var(--accent); }
 
 /* ── DEGREE LINK ── */
 a.degree-link {
