@@ -53,7 +53,8 @@ app.http('visitorCounter', {
             return {
                 status: 500,
                 jsonBody: {
-                    error: 'Unable to update visitor count'
+                    error: 'Unable to update visitor count',
+                    details: error.message
                 }
             };
         }
