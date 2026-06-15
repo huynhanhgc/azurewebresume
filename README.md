@@ -6,7 +6,7 @@ It is a cloud-hosted personal resume website built with Azure Static Web Apps, G
 ## Live Website
 
 Visit the live site here:  
-https://your-domain.com
+www.atranresume.cloud
 
 ## Project Overview
 
